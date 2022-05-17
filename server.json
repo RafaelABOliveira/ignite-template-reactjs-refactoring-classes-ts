@@ -23,6 +23,22 @@
       "price": "25.90",
       "available": false,
       "image": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food3.png"
+    },
+    {
+      "image": "https://img.itdg.com.br/images/recipes/000/302/674/326343/326343_original.jpg",
+      "name": "Moda Italianaa",
+      "price": "28.30",
+      "description": "Macarrão ao molho",
+      "available": true,
+      "id": 4
+    },
+    {
+      "image": "https://img.itdg.com.br/images/recipes/000/302/674/326343/326343_original.jpg",
+      "name": "Macarrão massa italiana",
+      "price": "19.90",
+      "description": "a",
+      "available": true,
+      "id": 5
     }
   ]
 }
