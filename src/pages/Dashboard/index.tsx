@@ -1,22 +1,13 @@
 import Header from "../../components/Header";
 import api from "../../services/api";
-import Food from "../../components/Food";
+import { Food } from "../../components/Food";
 import ModalAddFood from "../../components/ModalAddFood";
 import ModalEditFood from "../../components/ModalEditFood";
 import { FoodsContainer } from "./styles";
 import { useEffect, useState } from "react";
-
-interface FoodProps {
-  id: number;
-  name: string;
-  description: string;
-  price: number;
-  available: boolean;
-  image: string;
-}
+import { FoodProps } from "../../components/types";
 
 export function Dashboard() {
-
   const [foods, setFoods] = useState<FoodProps[]>([]);
   const [editingFood, setEditingFood] = useState({});
   const [modalOpen, setModalOpen] = useState(false);
@@ -48,12 +39,11 @@ export function Dashboard() {
     }
   }
 
-  async function handleUpdateFood(editingFood: FoodProps) {
-
+  async function handleUpdateFood(food: FoodProps) {
     try {
-      const foodUpdated = await api.put(`/foods/${editingFood.id}`, {
+      const foodUpdated = await api.put(`/foods/${food.id}`, {
         ...editingFood,
-        // ...food,
+        ...food,
       });
 
       const foodsUpdated = foods.map((f) =>
@@ -64,7 +54,7 @@ export function Dashboard() {
     } catch (err) {
       console.log(err);
     }
-  };
+  }
 
   async function handleDeleteFood(id: number) {
     await api.delete(`/foods/${id}`);
@@ -72,20 +62,20 @@ export function Dashboard() {
     const foodsFiltered = foods.filter((food) => food.id !== id);
 
     setFoods(foodsFiltered);
-  };
+  }
 
   function toggleModal() {
     setModalOpen(!modalOpen);
-  };
+  }
 
   function toggleEditModal() {
     setEditModalOpen(!editModalOpen);
-  };
+  }
 
   function handleEditFood(food: FoodProps) {
     setEditingFood(food);
     setEditModalOpen(true);
-  };
+  }
 
   return (
     <>
